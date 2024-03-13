@@ -46,7 +46,7 @@ function Post({ postDoc }) {
         <div style={alertStyle} className='post fade alert alert-secondary show'>
             <div className='author-info'>
                 <img className='pfp' width="30px" src={uAvatar}></img>
-                <p>{uDisplayName}</p>
+                <p>{uDisplayName} - {postDoc.uploadDate.toDate().getDate()} {postDoc.uploadDate.toDate().toLocaleString('default', { month: 'long' })}, {postDoc.uploadDate.toDate().getFullYear()}</p>
             </div>
             <div className='post-content' dangerouslySetInnerHTML={{ __html: postDoc.text }}></div>
         </div>

@@ -1,10 +1,12 @@
 import { useState, useEffect } from 'react';
 import './Page.scss';
-import { doc, getDoc, addDoc, collection } from 'firebase/firestore';
+import { doc, getDoc, addDoc, collection, Timestamp } from 'firebase/firestore';
 import { onAuthStateChanged } from 'firebase/auth';
 import { auth, usersRef, db } from '../config/firebase';
 import { Editor } from '@tinymce/tinymce-react';
 import { Button } from 'react-bootstrap';
+import firebase from 'firebase/app';
+import 'firebase/firestore';
 
 function hexToRgb(hex) {
     var result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
@@ -23,7 +25,8 @@ function Create() {
     const [uDisplayName, setDisplayName] = useState('');
     const [uAvatar, setAvatar] = useState('');
     const [userID, setUserID] = useState('error');
-    const [newPostText, setNewPostText] = useState('');
+
+    const [newPostText, setNewPostText] = useState('<p>Hello World!</p>');
     const [newPostColor, setNewPostColor] = useState('#a8a8a8');
     const [isDarkBackground, setIsDarkBackground] = useState(false); // State to track if background is dark
 
@@ -72,12 +75,16 @@ function Create() {
     }
 
     async function publishPost() {
+        const currentDate = new Date();
+        const timestamp = Timestamp.fromDate(currentDate);
+
         const docRef = await addDoc(collection(db, "posts"), {
             authorID: userID,
             likes: 0,
             postColor: newPostColor,
             text: newPostText,
-            type: "text"
+            type: "text",
+            uploadDate: timestamp
         });
 
         window.location.href = "/";
@@ -100,19 +107,20 @@ function Create() {
                                 'searchreplace visualblocks code fullscreen',
                                 'insertdatetime media table paste code help wordcount',
                                 'textcolor',
-                                'colorpicker'
+                                'colorpicker',
+                                'image'
                             ],
                             toolbar:
                                 'undo redo | formatselect | bold italic backcolor | \
                               alignleft aligncenter alignright alignjustify | \
                               bullist numlist outdent indent | removeformat | \
-                              forecolor | blocks fontfamily fontsize' // Correctly include fontsizeselect
+                              forecolor | blocks fontfamily fontsize | image' // Correctly include fontsizeselect
                         }}
                         onEditorChange={handleNewPostTextChange}
                     />
                 </div>
                 <label>Post Color</label>
-                <input type='color' onChange={handlePostColorChange}></input>
+                <input value={newPostColor} type='color' onChange={handlePostColorChange}></input>
             </div>
 
             <br />

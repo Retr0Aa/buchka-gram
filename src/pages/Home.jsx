@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react'
 import './Page.scss'
-import { collection, getDocs } from 'firebase/firestore';
+import { collection, getDocs, orderBy, query } from 'firebase/firestore';
 import { db } from '../config/firebase';
 import Post from '../components/Post';
 
@@ -11,7 +11,7 @@ function Home() {
 
     const getPostsList = async () => {
         try {
-            const data = await getDocs(postsCollectionRef)
+            const data = await getDocs(query(postsCollectionRef, orderBy('uploadDate', 'desc')))
             const filteredData = data.docs.map((doc) => ({
                 ...doc.data(),
                 id: doc.id,
