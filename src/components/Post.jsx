@@ -4,6 +4,19 @@ import { Alert } from 'react-bootstrap'
 import { doc, getDoc } from 'firebase/firestore';
 import { usersRef } from '../config/firebase';
 
+function hexToRgb(hex) {
+    var result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
+    return result ? {
+        r: parseInt(result[1], 16),
+        g: parseInt(result[2], 16),
+        b: parseInt(result[3], 16)
+    } : {
+        r: 0,
+        g: 0,
+        b: 0
+    };
+}
+
 function Post({ postDoc }) {
     const [uDisplayName, setDisplayName] = useState("");
     const [uAvatar, setAvatar] = useState();
@@ -24,14 +37,9 @@ function Post({ postDoc }) {
 
     fetchUserData()
 
-    const borderColor = [...postDoc.postColor]
-    borderColor[0] -= 30
-    borderColor[1] -= 30
-    borderColor[2] -= 30
-
     const alertStyle = {
-        "--bs-alert-bg": "rgb(" + postDoc.postColor + ")",
-        "--bs-alert-border-color": "rgb(" + borderColor + ")"
+        "--bs-alert-bg": "" + postDoc.postColor + "",
+        "--bs-alert-border-color": "rgb(" + (hexToRgb(postDoc.postColor).r + 30) + ", " + (hexToRgb(postDoc.postColor).g + 30) + ", " + (hexToRgb(postDoc.postColor).b) + ")"
     }
 
     return (
@@ -40,7 +48,7 @@ function Post({ postDoc }) {
                 <img className='pfp' width="30px" src={uAvatar}></img>
                 <p>{uDisplayName}</p>
             </div>
-            <p>{postDoc.text}</p>
+            <div className='post-content' dangerouslySetInnerHTML={{ __html: postDoc.text }}></div>
         </div>
     )
 }

@@ -30,7 +30,6 @@ function Home() {
         <div>
             {postsList.map((post) => (
                 <div key={post.id}>
-
                     <Post postDoc={post} />
                 </div>
             ))}
