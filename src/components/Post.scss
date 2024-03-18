@@ -13,4 +13,21 @@
 
         margin-right: 15px;
     }
+
+    .seperator {
+        border: 0.5px solid gray;
+
+        width: 100%;
+    }
+
+    .bottom-controls button {
+        display: flex;
+        align-items: center;
+
+        p {
+            height: 10px;
+
+            margin-left: 10px;
+        }
+    }
 }

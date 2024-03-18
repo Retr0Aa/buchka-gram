@@ -84,7 +84,8 @@ function Create() {
             postColor: newPostColor,
             text: newPostText,
             type: "text",
-            uploadDate: timestamp
+            uploadDate: timestamp,
+            likes: []
         });
 
         window.location.href = "/";
@@ -108,13 +109,14 @@ function Create() {
                                 'insertdatetime media table paste code help wordcount',
                                 'textcolor',
                                 'colorpicker',
-                                'image'
+                                'image',
+                                'wordcount'
                             ],
                             toolbar:
                                 'undo redo | formatselect | bold italic backcolor | \
                               alignleft aligncenter alignright alignjustify | \
                               bullist numlist outdent indent | removeformat | \
-                              forecolor | blocks fontfamily fontsize | image' // Correctly include fontsizeselect
+                              forecolor | blocks fontfamily fontsize | image| wordcount' // Correctly include fontsizeselect
                         }}
                         onEditorChange={handleNewPostTextChange}
                     />

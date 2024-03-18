@@ -100,3 +100,28 @@ select {
 .project-card {
     margin-right: 10px;
 }
+
+.profile-page {
+    .main {
+        display: flex;
+        align-items: center;
+        
+        .acc-data {
+            margin-left: 60px;
+
+            width: 100%;
+
+            .top-acc-controls {
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+            }
+        }
+        
+        .pfp {
+            border-radius: 50%;
+            
+            border: solid 1px lightgray;
+        }
+    }
+}
