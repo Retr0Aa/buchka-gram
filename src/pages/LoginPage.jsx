@@ -1,7 +1,7 @@
 import { useState } from "react"
 import './Page.scss'
 import { auth, googleProvider, usersRef } from "../config/firebase"
-import { createUserWithEmailAndPassword, onAuthStateChanged, signInWithPopup, signOut } from "firebase/auth"
+import { signInWithEmailAndPassword, onAuthStateChanged, signInWithPopup, signOut } from "firebase/auth"
 import { Button } from "react-bootstrap";
 import GoogleIcon from "../svg/google.svg"
 import { doc, setDoc } from "firebase/firestore";
@@ -12,7 +12,7 @@ function LoginPage() {
 
     const signIn = async () => {
         try {
-            await createUserWithEmailAndPassword(auth, email, password).then(cred => {
+            await signInWithEmailAndPassword(auth, email, password).then(cred => {
                 return setDoc(doc(usersRef, cred.user.uid), {
                     displayName: cred.user.displayName,
                     avatarUrl: cred.user.photoURL,
