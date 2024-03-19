@@ -6,6 +6,7 @@ import { db } from '../config/firebase';
 import { usersRef } from '../config/firebase';
 import Post from '../components/Post';
 import { Button } from 'react-bootstrap';
+import FriendsList from '../components/FriendsList';
 
 function Profile() {
     const [searchParams, setSearchParams] = useSearchParams();
@@ -20,6 +21,8 @@ function Profile() {
     const [postsList, setPostsList] = useState([])
 
     const postsCollectionRef = collection(db, "posts")
+
+  const [modalShow, setModalShow] = React.useState(false);
 
     const getPostsList = async () => {
         try {
@@ -67,7 +70,7 @@ function Profile() {
 
                     <p>{uDescription}</p>
 
-                    <p>Friends: {uFriends.length}</p>
+                    <Button onClick={() => setModalShow(true)}>Friends: {uFriends.length}</Button>
                 </div>
             </div>
 
@@ -82,6 +85,11 @@ function Profile() {
                     </div>
                 ))}
             </div>
+
+            <FriendsList
+                show={modalShow}
+                onHide={() => setModalShow(false)}
+                userID={userID}/>
         </div>
     )
 }

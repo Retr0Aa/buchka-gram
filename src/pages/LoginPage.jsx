@@ -43,7 +43,7 @@ function LoginPage() {
             <h1>Log In</h1>
             <br />
             <div className="auth-buttons">
-                <input
+                {/*<input
                     placeholder="Email"
                     type='email'
                     onChange={(e) => setEmail(e.target.value)}
@@ -56,7 +56,7 @@ function LoginPage() {
                 />
                 <br />
                 <Button onClick={signIn}>Sign In</Button>
-                <br />
+                <br />*/}
                 <Button variant="light" onClick={signInWithGoogle}><img width="50px" src={GoogleIcon}></img>Continue With Google</Button>
             </div>
         </div>
