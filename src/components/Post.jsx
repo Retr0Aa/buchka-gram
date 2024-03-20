@@ -94,9 +94,7 @@ function Post({ postDoc }) {
             </div>
             <div className="post-content" dangerouslySetInnerHTML={{ __html: postDoc.text }}></div>
 
-            <div className="seperator"></div>
-
-            <br />
+            <hr />
 
             <div className="bottom-controls">
                 <Button variant="secondary" onClick={handleLike}>

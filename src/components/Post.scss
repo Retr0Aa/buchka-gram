@@ -1,8 +1,13 @@
 .post {
     .author-info {
         display: flex;
+        align-items: center;
 
         margin-bottom: 10px;
+
+        p {
+            margin-top: 10px;
+        }
     }
 
     .pfp {
@@ -12,12 +17,6 @@
         border-radius: 50%;
 
         margin-right: 15px;
-    }
-
-    .seperator {
-        border: 0.5px solid gray;
-
-        width: 100%;
     }
 
     .bottom-controls button {

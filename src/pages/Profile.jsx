@@ -2,7 +2,8 @@ import { doc, getDoc, where } from 'firebase/firestore';
 import React, { useState, useEffect } from 'react'
 import { useSearchParams } from 'react-router-dom';
 import { collection, getDocs, orderBy, query } from 'firebase/firestore';
-import { db } from '../config/firebase';
+import { signOut } from 'firebase/auth'
+import { auth, db } from '../config/firebase';
 import { usersRef } from '../config/firebase';
 import Post from '../components/Post';
 import { Button } from 'react-bootstrap';
@@ -47,7 +48,7 @@ function Profile() {
                 const userDoc = await getDoc(doc(usersRef, userID));
                 setDisplayName(userDoc.data().displayName);
                 setAvatar(userDoc.data().avatarUrl);
-                setDescription(userDoc.data().description)
+                setDescription(userDoc.data().bio)
                 setFriends(userDoc.data().friends)
             } catch (err) {
                 console.error(err)
@@ -70,7 +71,9 @@ function Profile() {
 
                     <p>{uDescription}</p>
 
-                    <Button onClick={() => setModalShow(true)}>Friends: {uFriends.length}</Button>
+                    <Button style={{"margin-right": "10px"}} variant='primary' onClick={() => setModalShow(true)}>Friends: {uFriends.length}</Button>
+                    <Button style={{"margin-right": "10px"}} variant='warning' onClick={() => setModalShow(true)}>Edit Profile</Button>
+                    <Button variant='danger' onClick={() => signOut(auth)}>Log Out</Button>
                 </div>
             </div>
 

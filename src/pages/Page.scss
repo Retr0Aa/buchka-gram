@@ -1,4 +1,5 @@
-input, textarea {
+input,
+textarea {
     -webkit-appearance: none;
     appearance: none;
     background-clip: padding-box;
@@ -105,7 +106,7 @@ select {
     .main {
         display: flex;
         align-items: center;
-        
+
         .acc-data {
             margin-left: 60px;
 
@@ -117,11 +118,28 @@ select {
                 justify-content: space-between;
             }
         }
-        
+
         .pfp {
             border-radius: 50%;
-            
+
             border: solid 1px lightgray;
         }
+    }
+}
+
+.friend-card {
+    display: flex;
+    align-items: center;
+
+    margin-bottom: 10px;
+
+    img {
+        width: 50px;
+        height: 50px;
+    }
+
+    .bordpfp {
+        border: solid 1px lightgray;
+        border-radius: 50%;
     }
 }
