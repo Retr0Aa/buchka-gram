@@ -9,6 +9,7 @@ import { Button, Container, Nav, Navbar } from 'react-bootstrap';
 import Home from './pages/Home';
 import Profile from './pages/Profile';
 import Create from './pages/Create';
+import Logo from './svg/logo.png';
 
 function App() {
     const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -44,7 +45,7 @@ function App() {
         <div className="App">
             <Navbar className="bg-body-tertiary">
                 <Container>
-                    <Navbar.Brand href="/">BuchkaGram</Navbar.Brand>
+                    <Navbar.Brand href="/"><img width="40px" src={Logo}></img> BuchkaGram</Navbar.Brand>
                     <Navbar.Toggle aria-controls="basic-navbar-nav" />
                     <Navbar.Collapse id="basic-navbar-nav">
                         <Nav className="me-auto">

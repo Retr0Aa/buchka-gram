@@ -72,7 +72,6 @@ function Profile() {
                     <p>{uDescription}</p>
 
                     <Button style={{"margin-right": "10px"}} variant='primary' onClick={() => setModalShow(true)}>Friends: {uFriends.length}</Button>
-                    <Button style={{"margin-right": "10px"}} variant='warning' onClick={() => setModalShow(true)}>Edit Profile</Button>
                     <Button variant='danger' onClick={() => signOut(auth)}>Log Out</Button>
                 </div>
             </div>
